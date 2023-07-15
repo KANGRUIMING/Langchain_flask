@@ -51,8 +51,10 @@ def execute():
         retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
     )
 
+    prompt = "你是一个医生，给病人安排合适的药品，病人症状: "  # Add your prompt here
+    
     #chat_history = []
-    result = chain({"question": query, "chat_history": chat_history})
+    result = chain({"question": prompt + query, "chat_history": chat_history})
     answer = result['answer']
 
     chat_history.append((query, answer))
