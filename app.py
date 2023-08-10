@@ -12,9 +12,8 @@ from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.llms import OpenAI
 from langchain.vectorstores import Chroma
 
-import constants
 
-os.environ["OPENAI_API_KEY"] = constants.APIKEY
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 app = Flask(__name__)
 
