@@ -39,7 +39,7 @@ def execute():
         index = VectorStoreIndexWrapper(vectorstore=vectorstore)
     else:
         # loader = TextLoader("data/data.txt") # Use this line if you only need data.txt
-        loader = DirectoryLoader("data/")
+        loader = DirectoryLoader("data/") # Use this line if you need all files in the data folder
         if PERSIST:
             index = VectorstoreIndexCreator(vectorstore_kwargs={"persist_directory":"persist"}).from_loaders([loader])
         else:
@@ -50,9 +50,9 @@ def execute():
         retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
     )
 
-    prompt = "你是一个医生，给病人安排合适的药品，病人症状: "  # Add your prompt here
+    prompt = "You are a AI assistent, Help the user with the following."  # Add your prompt here
     
-    #chat_history = []
+    #chat_history = [] # Uncomment this line if you want to reset the chat history for each query
     result = chain({"question": prompt + query, "chat_history": chat_history})
     answer = result['answer']
 
