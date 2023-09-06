@@ -52,7 +52,7 @@ def execute():
 
     prompt = "You are a AI assistent, Help the user with the following."  # Add your prompt here
     
-    #chat_history = [] # Uncomment this line if you want to reset the chat history for each query
+    chat_history = [] # Uncomment this line if you want to reset the chat history for each query
     result = chain({"question": prompt + query, "chat_history": chat_history})
     answer = result['answer']
 
